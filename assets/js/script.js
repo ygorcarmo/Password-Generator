@@ -48,10 +48,10 @@ function generatePassword(){
   if(characterAmountRange >= 8 && characterAmountRange <= 128){
     passOptions();
   }
-  if(!includeNumbers && !includeSymbols && !includeUpperCase){
-    window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
-    passwordCharacters = "Try Again!"
-  }
+  // if(!includeNumbers && !includeSymbols && !includeUpperCase){
+  //   window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
+  //   passwordCharacters = ["Try Again!"]
+  // }
 
   // Generating pass
   var charCodes = LOWERCASE_CHAR_CODES;
@@ -78,9 +78,15 @@ function generatePassword(){
     var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
     passwordCharacters.push(String.fromCharCode(characterCode))
   };
-  console.log(passwordCharacters);
+  
+  // If options not selected error = try again
+  if(!includeNumbers && !includeSymbols && !includeUpperCase){
+    window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
+    passwordCharacters = ["Try Again!"]
+  }
 
   return passwordCharacters.join('');
+  
   
   
 };
