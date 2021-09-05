@@ -7,7 +7,10 @@ var characterAmount = function(){
 
 // If user enter a value that is less than 8 or greater than 128
 if(characterAmountRange < 8 || characterAmountRange > 128) {
-  window.alert("The character ammount must be greater than 8 and less than 128");   
+  window.alert("The character ammount must be greater than 8 and less than 128"); 
+  includeUpperCase = false;
+  includeNumbers = false;
+  includeSymbols = false;  
 }
 };
 
