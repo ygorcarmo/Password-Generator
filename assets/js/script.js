@@ -16,6 +16,9 @@ if(characterAmountRange < 8 || characterAmountRange > 128) {
 
 // Function with pass options
 var passOptions = function(){
+// include lowercase
+includeLowerCase = window.confirm("Include Lowercase ?");
+
 // Include UPPERCASE
 includeUpperCase = window.confirm("Include Uppercase ?");
 
@@ -57,22 +60,48 @@ function generatePassword(){
   // }
 
   // Generating pass
-  var charCodes = LOWERCASE_CHAR_CODES;
+  var charCodes = [];
+// no choices selected
+if(!includeLowerCase && !includeNumbers && !includeSymbols && !includeUpperCase){
+    window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
+    passwordCharacters = ["Try Again!"]
+}// all choices true 
+else if(includeLowerCase && includeNumbers && includeSymbols && includeUpperCase){
+    charCodes = LOWERCASE_CHAR_CODES.concat(UPPERCASE_CHAR_CODES, NUMBER_CHAR_CODES, SYMBOL_CHAR_CODES);
+}// triple choices
+else if(includeLowerCase && includeUpperCase && includeNumbers){
+    charCodes = LOWERCASE_CHAR_CODES.concat(UPPERCASE_CHAR_CODES, NUMBER_CHAR_CODES);
+}else if(includeLowerCase && includeUpperCase && includeSymbols){
+    charCodes = LOWERCASE_CHAR_CODES.concat(UPPERCASE_CHAR_CODES, SYMBOL_CHAR_CODES);
+}else if(includeLowerCase && includeNumbers && includeSymbols){
+    charCodes = LOWERCASE_CHAR_CODES.concat(NUMBER_CHAR_CODES, SYMBOL_CHAR_CODES);
+}else if(includeUpperCase && includeNumbers && includeSymbols){
+     charCodes = UPPERCASE_CHAR_CODES.concat(NUMBER_CHAR_CODES, SYMBOL_CHAR_CODES);
+} // double choices
+else if(includeLowerCase && includeUpperCase){
+    charCodes = LOWERCASE_CHAR_CODES.concat(UPPERCASE_CHAR_CODES);
+}else if(includeLowerCase && includeNumbers){
+    charCodes = LOWERCASE_CHAR_CODES.concat(NUMBER_CHAR_CODES);
+}else if(includeLowerCase && includeSymbols){
+     charCodes = LOWERCASE_CHAR_CODES.concat(SYMBOL_CHAR_CODES);
+}else if(includeUpperCase && includeNumbers){
+    charCodes = UPPERCASE_CHAR_CODES.concat(NUMBER_CHAR_CODES);
+}else if(includeUpperCase && includeSymbols){
+    charCodes = UPPERCASE_CHAR_CODES.concat(SYMBOL_CHAR_CODES);
+}else if(includeSymbols && includeNumbers){
+    charCodes = SYMBOL_CHAR_CODES.concat(NUMBER_CHAR_CODES);
+} // single choices
+else if(includeUpperCase){
+    charCodes = UPPERCASE_CHAR_CODES;
+}else if(includeNumbers){
+    charCodes = NUMBER_CHAR_CODES;
+}else if(includeSymbols){
+    charCodes = SYMBOL_CHAR_CODES;
+}else{
+    charCodes = LOWERCASE_CHAR_CODES;
+}
 
-// If include upper is true = add
-  if(includeUpperCase){
-    charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
-  }
 
-  // If include number is true = add
-  if(includeNumbers){
-    charCodes = charCodes.concat(NUMBER_CHAR_CODES)
-  }
-
-  // If include symbol is true = add
-  if(includeSymbols){
-    charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
-  }
 
   var passwordCharacters = []
   // loop to get pass
@@ -83,10 +112,10 @@ function generatePassword(){
   };
   
   // If options not selected error = try again
-  if(!includeNumbers && !includeSymbols && !includeUpperCase){
-    window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
-    passwordCharacters = ["Try Again!"]
-  }
+  // if(!includeNumbers && !includeSymbols && !includeUpperCase){
+  //   window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
+  //   passwordCharacters = ["Try Again!"]
+  // }
 
   return passwordCharacters.join('');
   
