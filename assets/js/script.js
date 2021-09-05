@@ -11,6 +11,7 @@ if(characterAmountRange < 8 || characterAmountRange > 128) {
   includeUpperCase = false;
   includeNumbers = false;
   includeSymbols = false;  
+  includeLowerCase = false;
 }
 };
 
