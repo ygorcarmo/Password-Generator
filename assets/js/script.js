@@ -51,7 +51,7 @@ var SYMBOL_CHAR_CODES = arrayFromLowtoHigh(33, 47).concat(
 function generatePassword(){
 
   characterAmount();
-  console.log(characterAmountRange);
+  // console.log(characterAmountRange);
   if(characterAmountRange >= 8 && characterAmountRange <= 128){
     passOptions();
   }
