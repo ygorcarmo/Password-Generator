@@ -1,19 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Ammount of characters
-var characterAmount = function(){
-  characterAmountRange = window.prompt("Enter Number Of Characters:");
 
-// If user enter a value that is less than 8 or greater than 128
-if(characterAmountRange < 8 || characterAmountRange > 128) {
-  window.alert("The character ammount must be greater than 8 and less than 128"); 
-  includeUpperCase = false;
-  includeNumbers = false;
-  includeSymbols = false;  
-  includeLowerCase = false;
-}
-};
 
 // Function with pass options
 var passOptions = function(){
@@ -50,15 +38,26 @@ var SYMBOL_CHAR_CODES = arrayFromLowtoHigh(33, 47).concat(
 // Code for Prompts when button selected
 function generatePassword(){
 
-  characterAmount();
-  // console.log(characterAmountRange);
-  if(characterAmountRange >= 8 && characterAmountRange <= 128){
+// prompt with asking the amount of password characters
+  var characterAmountRange = window.prompt("Enter Number Of Characters:");
+
+// nothing insert === error
+  if(characterAmountRange === null){
+    window.alert("See you next time!")
+    return null;
+  }
+
+//  If incorrect amount is insert, error will come up
+  if(characterAmountRange < 8 || characterAmountRange > 128) {
+       window.alert("The character ammount must be greater than 8 and less than 128");       
+       return null;
+  }
+
+
+// When correct amount is input, it will ask what will be added to password 
+  if(characterAmountRange >= 8 || characterAmountRange <= 128){
     passOptions();
   }
-  // if(!includeNumbers && !includeSymbols && !includeUpperCase){
-  //   window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
-  //   passwordCharacters = ["Try Again!"]
-  // }
 
   // Generating pass
   var charCodes = [];
@@ -101,9 +100,9 @@ else if(includeUpperCase){
 }else{
     charCodes = LOWERCASE_CHAR_CODES;
 }
+// end of if options for password
 
-
-
+// Making password with array
   var passwordCharacters = []
   // loop to get pass
   for(var i = 0; i < characterAmountRange; i++){
@@ -111,17 +110,8 @@ else if(includeUpperCase){
     var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
     passwordCharacters.push(String.fromCharCode(characterCode))
   };
-  
-  // If options not selected error = try again
-  // if(!includeNumbers && !includeSymbols && !includeUpperCase){
-  //   window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
-  //   passwordCharacters = ["Try Again!"]
-  // }
 
-  return passwordCharacters.join('');
-  
-  
-  
+  return passwordCharacters.join('');  
 };
 
 // Array that will go through letters/numbers/symbols
