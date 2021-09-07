@@ -64,7 +64,7 @@ function generatePassword(){
 // no choices selected
 if(!includeLowerCase && !includeNumbers && !includeSymbols && !includeUpperCase){
     window.alert("Password needs at least one of the options(Uppercase, Number or Symbol)");
-    passwordCharacters = ["Try Again!"]
+    return null;
 }// all choices true 
 else if(includeLowerCase && includeNumbers && includeSymbols && includeUpperCase){
     charCodes = LOWERCASE_CHAR_CODES.concat(UPPERCASE_CHAR_CODES, NUMBER_CHAR_CODES, SYMBOL_CHAR_CODES);
