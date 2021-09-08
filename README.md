@@ -1,11 +1,12 @@
-## Welcome to GitHub Pages
+## Welcome to Password Generator
 
-You can use the [editor on GitHub](https://github.com/ygorcarmo/Password-Generator/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+This Website is able to create a random secure password, which needs to contain at least 8 characters and no more than 128 characters, there is also the need to choose at least one of the following options:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Description
-
+* Include
+  * LowerCase
+  * UpperCase
+  * Numeric
+  * Special Characters
 
 ### Website Screenshot
 
